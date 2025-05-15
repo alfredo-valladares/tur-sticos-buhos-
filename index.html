@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buhos Turismo - Transporte Ejecutivo y Excursiones en Morelos</title>
+  <meta name="description" content="Renta de autobuses, camionetas y servicio ejecutivo en Cuautla y Yautepec. Excursiones a los mejores destinos de Morelos con seguridad y comodidad.">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <style>
+    :root {
+      --primary: #6B1E2D;
+      --primary-dark: #501520;
+      --secondary: #C2B59B;
+      --secondary-dark: #A89D88;
+      --dark: #1C1C1C;
+      --light: #F5F5F5;
+      --gray: #2F2F2F;
+      --gray-light: #D9D9D9;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light);
+      color: var(--gray);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    /* Navbar Styles */
+    .navbar {
+      background-color: var(--dark);
+      padding: 15px 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      padding: 10px 0;
+      background-color: rgba(28, 28, 28, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    
+    .navbar-brand {
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    
+    .navbar-brand span {
+      color: var(--primary);
+    }
+    
+    .nav-link {
+      color: var(--secondary);
+      font-weight: 500;
+      margin: 0 10px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      bottom: -5px;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .navbar-toggler {
+      border: none;
+      color: var(--secondary);
+      font-size: 1.5rem;
+      padding: 5px 10px;
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+    
+    /* Mobile Menu */
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        background-color: var(--dark);
+        padding: 20px;
+        margin-top: 15px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+      
+      .nav-link {
+        margin: 10px 0;
+        padding: 10px 15px;
+        border-radius: 5px;
+      }
+      
+      .nav-link:hover {
+        background-color: rgba(107, 30, 45, 0.1);
+      }
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                  url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      padding: 180px 0 100px;
+      text-align: center;
+      margin-top: 76px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    .hero-section h1 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+    
+    .hero-section p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    
+    h1 {
+      color: var(--primary);
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      color: var(--primary);
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background: var(--secondary);
+      bottom: -10px;
+      left: 0;
+      border-radius: 2px;
+    }
+    
+    h3 {
+      color: var(--dark);
+      font-size: 1.8rem;
+    }
+    
+    h4 {
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+    
+    h5 {
+      color: var(--secondary);
+      font-size: 1.3rem;
+    }
+    
+    p {
+      color: var(--gray);
+      font-size: 1.05rem;
+    }
+    
+    /* Buttons */
+    .btn {
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.9rem;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+    
+    .btn-primary:hover, .btn-primary:focus {
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(107, 30, 45, 0.3);
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary);
+      color: var(--dark);
+      border: none;
+    }
+    
+    .btn-secondary:hover, .btn-secondary:focus {
+      background-color: var(--secondary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(194, 181, 155, 0.3);
+    }
+    
+    /* Sections */
+    section {
+      padding: 80px 0;
+      position: relative;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    /* Benefits Section */
+    .benefit-card {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      height: 100%;
+      transition: all 0.3s ease;
+      text-align: center;
+      border-bottom: 4px solid transparent;
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border-bottom-color: var(--primary);
+    }
+    
+    .benefit-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      background: rgba(107, 30, 45, 0.1);
+      width: 80px;
+      height: 80px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    
+    /* Vehicles Section */
+    .vehicle-card {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      background: white;
+    }
+    
+    .vehicle-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .vehicle-img {
+      height: 250px;
+      object-fit: cover;
+      width: 100%;
+    }
+    
+    .vehicle-body {
+      padding: 25px;
+    }
+    
+    .vehicle-body h3 {
+      margin-bottom: 15px;
+    }
+    
+    .vehicle-body p {
+      margin-bottom: 20px;
+    }
+    
+    /* Excursions Section */
+    .excursion-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                  url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+    }
+    
+    .excursion-section h2 {
+      color: white;
+    }
+    
+    .excursion-section h2::after {
+      background: var(--secondary);
+    }
+    
+    .excursion-list {
+      text-align: left;
+      background: rgba(255,255,255,0.9);
+      padding: 30px;
+      border-radius: 10px;
+      color: var(--gray);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .excursion-list ul {
+      padding-left: 20px;
+    }
+    
+    .excursion-list li {
+      margin-bottom: 15px;
+      position: relative;
+    }
+    
+    .excursion-list li::before {
+      content: '✓';
+      color: var(--primary);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    
+    /* Testimonials */
+    .testimonial-card {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      position: relative;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: Georgia, serif;
+      font-size: 60px;
+      color: rgba(107, 30, 45, 0.1);
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+    
+    .testimonial-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+      border: 3px solid var(--primary);
+    }
+    
+    .testimonial-author {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .testimonial-role {
+      color: var(--secondary-dark);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    
+    .stars {
+      color: #FFC107;
+      margin-bottom: 15px;
+    }
+    
+    /* FAQ */
+    .accordion-item {
+      margin-bottom: 15px;
+      border-radius: 8px !important;
+      overflow: hidden;
+      border: 1px solid var(--gray-light);
+    }
+    
+    .accordion-button {
+      font-weight: 600;
+      color: var(--dark);
+      padding: 15px 20px;
+    }
+    
+    .accordion-button:not(.collapsed) {
+      background-color: rgba(107, 30, 45, 0.1);
+      color: var(--primary);
+    }
+    
+    .accordion-button:focus {
+      box-shadow: none;
+      border-color: var(--gray-light);
+    }
+    
+    .accordion-body {
+      padding: 20px;
+    }
+    
+    /* Contact Form */
+    .contact-form {
+      background: white;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .form-control {
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid var(--gray-light);
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.25rem rgba(107, 30, 45, 0.25);
+    }
+    
+    /* WhatsApp Float */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    
+    .whatsapp-float:hover {
+      background: #128C7E;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      animation: none;
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+    
+    /* Urgency Badge */
+    .urgency-badge {
+      background-color: var(--primary);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--secondary);
+      padding: 60px 0 20px;
+    }
+    
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .footer-logo span {
+      color: var(--primary);
+    }
+    
+    .footer-contact {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    
+    .footer-contact a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-contact a:hover {
+      color: var(--primary);
+    }
+    
+    .social-icons a {
+      color: var(--secondary);
+      font-size: 1.2rem;
+      margin-right: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .footer-links h3 {
+      color: var(--secondary);
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-links h3::after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 2px;
+      background: var(--primary);
+      bottom: 0;
+      left: 0;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+    
+    .copyright {
+      border-top: 1px solid rgba(194, 181, 155, 0.2);
+      padding-top: 20px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 767.98px) {
+      .hero-section {
+        padding: 120px 0 80px;
+        min-height: auto;
+      }
+      
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-section p {
+        font-size: 1rem;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+      
+      .section-title {
+        margin-bottom: 40px;
+      }
+      
+      .vehicle-img {
+        height: 200px;
+      }
+      
+      .contact-form {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#inicio">Buhos<span>Turismo</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#inicio"><i class="fas fa-home me-2"></i>Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#vehiculos"><i class="fas fa-bus me-2"></i>Vehículos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#excursiones"><i class="fas fa-umbrella-beach me-2"></i>Excursiones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testimonios"><i class="fas fa-comments me-2"></i>Testimonios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contacto"><i class="fas fa-envelope me-2"></i>Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="hero-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h1 class="mb-4">Renta de Autobuses y Camionetas en Cuautla y Yautepec</h1>
+          <p class="mb-5">Viajes turísticos, empresariales o familiares con la máxima seguridad y comodidad. Excursiones a los mejores destinos de Morelos, todo incluido.</p>
+          <div class="d-flex flex-wrap justify-content-center">
+            <a href="#contacto" class="btn btn-primary btn-lg me-3 mb-3"><i class="fas fa-calendar-check me-2"></i>Cotizar Ahora</a>
+            <a href="#excursiones" class="btn btn-secondary btn-lg mb-3"><i class="fas fa-map-marked-alt me-2"></i>Ver Excursiones</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-title">
+        <h2>¿Por qué elegir Buhos Turismo?</h2>
+        <p class="lead">Ofrecemos el mejor servicio de transporte en Morelos con estas ventajas</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4>Flota 2023-2024</h4>
+            <p>Unidades modernas con seguro incluido para tu tranquilidad y máxima seguridad en carretera.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <h4>Choferes Profesionales</h4>
+            <p>Con amplia experiencia y conocimiento de las rutas. Todas nuestras unidades tienen rastreo GPS.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-tag"></i>
+            </div>
+            <h4>Precios Fijos</h4>
+            <p>Sin cargos ocultos, cotización transparente desde el inicio. Mejor relación calidad-precio.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-umbrella-beach"></i>
+            </div>
+            <h4>Excursiones Todo Incluido</h4>
+            <p>Solo relájate y disfruta, nosotros nos encargamos de todo el transporte y logística.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vehicles Section -->
+  <section id="vehiculos" class="py-5">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nuestra Flota de Vehículos</h2>
+        <p class="lead">Elige el vehículo perfecto para tus necesidades</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <div class="vehicle-card">
+            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Autobús" class="img-fluid vehicle-img">
+            <div class="vehicle-body">
+              <h3><i class="fas fa-bus me-2"></i>Autobuses</h3>
+              <p><strong>Capacidad:</strong> 40-50 pasajeros</p>
+              <p><strong>Ideal para:</strong> Grupos grandes, viajes escolares o empresariales, excursiones.</p>
+              <p><strong>Características:</strong> Aire acondicionado, asientos reclinables, portaequipajes, TV.</p>
+              <a href="#contacto" class="btn btn-primary w-100"><i class="fas fa-calendar-alt me-2"></i>Reservar Ahora</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="vehicle-card">
+            <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Camioneta" class="img-fluid vehicle-img">
+            <div class="vehicle-body">
+              <h3><i class="fas fa-shuttle-van me-2"></i>Camionetas</h3>
+              <p><strong>Capacidad:</strong> 12-15 pasajeros</p>
+              <p><strong>Ideal para:</strong> Familias o grupos pequeños, viajes cortos, traslados.</p>
+              <p><strong>Características:</strong> Cómodas y seguras, aire acondicionado, espacio para equipaje.</p>
+              <a href="#contacto" class="btn btn-primary w-100"><i class="fas fa-calendar-alt me-2"></i>Reservar Ahora</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mx-auto">
+          <div class="vehicle-card">
+            <img src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Vehículo Ejecutivo" class="img-fluid vehicle-img">
+            <div class="vehicle-body">
+              <h3><i class="fas fa-car me-2"></i>Servicio Ejecutivo</h3>
+              <p><strong>Capacidad:</strong> 3-5 pasajeros</p>
+              <p><strong>Ideal para:</strong> Viajes de negocios, traslados especiales, comodidad premium.</p>
+              <p><strong>Características:</strong> Servicio VIP con amenities, wifi, bebidas refrescantes.</p>
+              <a href="#contacto" class="btn btn-primary w-100"><i class="fas fa-calendar-alt me-2"></i>Reservar Ahora</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <div class="urgency-badge">
+          <i class="fas fa-exclamation-circle me-2"></i>¡Solo 2 autobuses disponibles para diciembre!
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Excursions Section -->
+  <section id="excursiones" class="excursion-section py-5">
+    <div class="container">
+      <div class="section-title">
+        <h2 class="text-white">¿Quieres explorar Morelos sin preocupaciones?</h2>
+        <p class="lead text-white">Deja la logística en nuestras manos y disfruta al máximo</p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="excursion-list">
+            <h3 class="text-center mb-4"><i class="fas fa-map-marked-alt me-2"></i>Nuestras Excursiones Populares</h3>
+            <ul>
+              <li><strong>Taxco</strong> - La ciudad platera con su impresionante arquitectura colonial y calles empedradas.</li>
+              <li><strong>Grutas de Cacahuamilpa</strong> - Maravillas naturales bajo la tierra, uno de los sistemas de cuevas más grandes del mundo.</li>
+              <li><strong>Tepoztlán</strong> - Pueblo mágico con energía especial, pirámide y deliciosa gastronomía local.</li>
+              <li><strong>Xochicalco</strong> - Zona arqueológica declarada Patrimonio de la Humanidad por la UNESCO.</li>
+              <li><strong>Lagunas de Zempoala</strong> - Hermoso parque nacional ideal para días de campo y contacto con la naturaleza.</li>
+            </ul>
+            <p class="text-center mt-4"><em>Todas nuestras excursiones incluyen transporte ida y vuelta, guía turístico certificado y paradas en los puntos clave del itinerario.</em></p>
+            
+            <div class="urgency-badge text-center">
+              <i class="fas fa-clock me-2"></i>¡Próxima salida: 15 de Noviembre! Cupo limitado
+            </div>
+            
+            <div class="text-center mt-3">
+              <a href="#contacto" class="btn btn-primary"><i class="fas fa-info-circle me-2"></i>Solicitar Información</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonios" class="py-5 bg-light">
+    <div class="container">
+      <div class="section-title">
+        <h2>Lo que dicen nuestros clientes</h2>
+        <p class="lead">Experiencias reales de viajeros como tú</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <div class="testimonial-card">
+            <div class="d-flex align-items-center mb-3">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Testimonio 1" class="testimonial-img">
+              <div>
+                <h5 class="testimonial-author mb-0">Javier Rodríguez</h5>
+                <p class="testimonial-role mb-0">Grupo de amigos</p>
+              </div>
+            </div>
+            <p>"Nos llevaron a una excursión a las Grutas y todo fue perfecto. El autobús muy cómodo, el chofer muy amable y puntual. La guía turística súper conocedora. ¡100% recomendados!"</p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="testimonial-card">
+            <div class="d-flex align-items-center mb-3">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimonio 2" class="testimonial-img">
+              <div>
+                <h5 class="testimonial-author mb-0">María González</h5>
+                <p class="testimonial-role mb-0">Viaje familiar</p>
+              </div>
+            </div>
+            <p>"Contratamos una camioneta para un viaje familiar y quedamos encantados. Muy seguros, puntuales y con excelente servicio. Los niños viajaron cómodos y seguros. Repetiremos sin duda."</p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mx-auto">
+          <div class="testimonial-card">
+            <div class="d-flex align-items-center mb-3">
+              <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Testimonio 3" class="testimonial-img">
+              <div>
+                <h5 class="testimonial-author mb-0">Carlos Méndez</h5>
+                <p class="testimonial-role mb-0">Viaje empresarial</p>
+              </div>
+            </div>
+            <p>"Excelente servicio para nuestro equipo de trabajo. Los autobuses muy limpios y cómodos, los choferes muy profesionales. Cumplieron con todos los horarios y requisitos de nuestro evento."</p>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-title">
+        <h2>Preguntas Frecuentes</h2>
+        <p class="lead">Resolvemos tus dudas más comunes</p>
+      </div>
+      
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+              <i class="fas fa-question-circle me-3"></i>¿Cómo se calcula el precio del servicio?
+            </button>
+          </h3>
+          <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              El precio se calcula principalmente por distancia y tiempo del servicio. También consideramos el tipo de vehículo requerido. Ofrecemos cotización transparente sin compromiso para que conozcas el costo exacto desde el inicio. No hay cargos ocultos y puedes pagar con transferencia, efectivo o tarjeta.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              <i class="fas fa-user-tie me-3"></i>¿Puedo elegir al chofer que nos llevará?
+            </button>
+          </h3>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Todos nuestros choferes son profesionales capacitados y con experiencia en el servicio que ofrecen. Si tienes preferencia por algún chofer en particular debido a un servicio previo, puedes indicarlo al momento de hacer tu reservación y haremos lo posible por asignártelo, sujeto a su disponibilidad.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+              <i class="fas fa-umbrella-beach me-3"></i>¿Qué incluyen los paquetes de excursiones?
+            </button>
+          </h3>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Nuestros paquetes de excursiones incluyen transporte ida y vuelta en unidades cómodas y seguras, guía turístico certificado, paradas en los puntos clave del itinerario y recomendaciones para disfrutar al máximo tu experiencia. Algunas excursiones pueden incluir comidas o entradas (esto se especifica en cada paquete). También te proporcionamos información turística relevante sobre cada destino.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+              <i class="fas fa-calendar-times me-3"></i>¿Cuál es su política de cancelación?
+            </button>
+          </h3>
+          <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Ofrecemos cancelación gratis con 48 horas de anticipación. Para cancelaciones con menos tiempo, aplica un cargo del 30% del valor del servicio. En excursiones grupales, las políticas pueden variar según el proveedor y se informan al momento de la reservación. En caso de cancelación por condiciones climáticas extremas, ofrecemos reprogramación sin costo o reembolso completo.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+              <i class="fas fa-map-marker-alt me-3"></i>¿A qué zonas dan servicio?
+            </button>
+          </h3>
+          <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Nuestro servicio principal cubre Cuautla, Yautepec y sus alrededores, pero también realizamos viajes a todo Morelos y estados vecinos como Puebla, Estado de México y Ciudad de México. Para destinos más lejanos, contáctanos para confirmar disponibilidad y cotización. No cobramos adicional por servicio dentro de la zona metropolitana de Cuautla-Yautepec.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contacto" class="py-5 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="contact-form">
+            <div class="section-title">
+              <h2>¿Listo para tu viaje?</h2>
+              <p class="lead">¡Contáctanos en 1 minuto!</p>
+            </div>
+            
+            <form id="contactForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Nombre completo" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="tel" class="form-control" placeholder="Teléfono" required>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="email" class="form-control" placeholder="Email (opcional)">
+                </div>
+                <div class="col-md-6">
+                  <select class="form-control" required>
+                    <option value="">Tipo de servicio</option>
+                    <option>Renta de autobús</option>
+                    <option>Renta de camioneta</option>
+                    <option>Servicio ejecutivo</option>
+                    <option>Excursión</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+              </div>
+              
+              <textarea class="form-control" rows="4" placeholder="Detalles de tu viaje (fechas, pasajeros, destino, etc.)" required></textarea>
+              
+              <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg"><i class="fab fa-whatsapp me-2"></i>Enviar por WhatsApp</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/527354613132?text=Hola%20Buhos%20Turismo,%20me%20interesa%20información%20sobre%20sus%20servicios" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="footer-logo">Buhos<span>Turismo</span></div>
+          <p>Viajes ejecutivos con estilo y seguridad en Morelos y alrededores. Más de 10 años de experiencia transportando clientes satisfechos.</p>
+          <div class="mt-4">
+            <a href="tel:7354613132" class="footer-contact"><i class="fas fa-phone-alt me-2"></i> 735 461 3132</a>
+            <p><i class="fas fa-envelope me-2"></i> info@buhosturismo.com</p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <div class="footer-links">
+            <h3>Enlaces rápidos</h3>
+            <ul>
+              <li><a href="#inicio"><i class="fas fa-chevron-right me-2"></i>Inicio</a></li>
+              <li><a href="#vehiculos"><i class="fas fa-chevron-right me-2"></i>Vehículos</a></li>
+              <li><a href="#excursiones"><i class="fas fa-chevron-right me-2"></i>Excursiones</a></li>
+              <li><a href="#testimonios"><i class="fas fa-chevron-right me-2"></i>Testimonios</a></li>
+              <li><a href="#contacto"><i class="fas fa-chevron-right me-2"></i>Contacto</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <div class="footer-links">
+            <h3>Zonas de servicio</h3>
+            <ul>
+              <li><i class="fas fa-map-marker-alt me-2"></i>Cuautla</li>
+              <li><i class="fas fa-map-marker-alt me-2"></i>Yautepec</li>
+              <li><i class="fas fa-map-marker-alt me-2"></i>Cuernavaca</li>
+              <li><i class="fas fa-map-marker-alt me-2"></i>Jojutla</li>
+              <li><i class="fas fa-map-marker-alt me-2"></i>Y alrededores</li>
+            </ul>
+            
+            <div class="social-icons mt-4">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p class="mb-0">&copy; 2025 Buhos Turismo. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      // Navbar scroll effect
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > 50) {
+          $('.navbar').addClass('scrolled');
+        } else {
+          $('.navbar').removeClass('scrolled');
+        }
+        
+        // Back to top button
+        if ($(this).scrollTop() > 300) {
+          $('.back-to-top').addClass('active');
+        } else {
+          $('.back-to-top').removeClass('active');
+        }
+      });
+      
+      // Smooth scrolling for anchor links
+      $('a[href*="#"]').on('click', function(e) {
+        e.preventDefault();
+        
+        $('html, body').animate(
+          {
+            scrollTop: $($(this).attr('href')).offset().top - 70,
+          },
+          500,
+          'linear'
+        );
+        
+        // Close mobile menu when clicking a link
+        if ($(window).width() < 992) {
+          $('.navbar-collapse').collapse('hide');
+        }
+      });
+      
+      // Form submission handler
+      $('#contactForm').submit(function(e) {
+        e.preventDefault();
+        const phone = '7354613132';
+        const name = encodeURIComponent($(this).find('input[type="text"]').val());
+        const tel = encodeURIComponent($(this).find('input[type="tel"]').val());
+        const service = encodeURIComponent($(this).find('select').val());
+        const message = encodeURIComponent($(this).find('textarea').val());
+        
+        const whatsappUrl = `https://wa.me/52${phone}?text=Hola%20Buhos%20Turismo,%20soy%20${name}%20(${tel}).%20Me%20interesa%20${service}.%20Detalles:%20${message}`;
+        
+        window.open(whatsappUrl, '_blank');
+      });
+      
+      // Add active class to current section in navbar
+      $(window).scroll(function() {
+        var scrollPosition = $(window).scrollTop() + 100;
+        
+        $('section').each(function() {
+          var sectionId = $(this).attr('id');
+          var sectionOffset = $(this).offset().top;
+          var sectionHeight = $(this).outerHeight();
+          
+          if (scrollPosition >= sectionOffset && scrollPosition < sectionOffset + sectionHeight) {
+            $('.nav-link').removeClass('active');
+            $('.nav-link[href="#' + sectionId + '"]').addClass('active');
+          }
+        });
+      });
+      
+      // Initialize scrollspy
+      $('body').scrollspy({
+        target: '.navbar',
+        offset: 100
+      });
+      
+      // Back to top button
+      $('.back-to-top').click(function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop: 0}, '300');
+      });
+      
+      // Mobile menu close when clicking outside
+      $(document).click(function(event) {
+        if (!$(event.target).closest('.navbar-collapse, .navbar-toggler').length) {
+          if ($('.navbar-collapse').hasClass('show')) {
+            $('.navbar-collapse').collapse('hide');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

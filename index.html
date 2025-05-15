@@ -37,7 +37,9 @@
       overflow-x: hidden;
       line-height: 1.6;
     }
-    
+    a {
+      text-decoration: none;
+    }
     /* Navbar Styles */
     .navbar {
       background-color: var(--dark);
@@ -707,7 +709,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <h1 class="mb-4">Renta de Autobuses y Camionetas en Cuautla y Yautepec</h1>
-          <p class="mb-5">Viajes turísticos, empresariales o familiares con la máxima seguridad y comodidad. Excursiones a los mejores destinos de Morelos, todo incluido.</p>
+          <p class="mb-5" style="color: #D9D9D9;">Viajes turísticos, empresariales o familiares con la máxima seguridad y comodidad. Excursiones a los mejores destinos de Morelos, todo incluido.</p>
           <div class="d-flex flex-wrap justify-content-center">
             <a href="#contacto" class="btn btn-primary btn-lg me-3 mb-3"><i class="fas fa-calendar-check me-2"></i>Cotizar Ahora</a>
             <a href="#excursiones" class="btn btn-secondary btn-lg mb-3"><i class="fas fa-map-marked-alt me-2"></i>Ver Excursiones</a>
@@ -1056,12 +1058,12 @@
   </section>
 
   <!-- WhatsApp Float -->
-  <a href="https://wa.me/527354613132?text=Hola%20Buhos%20Turismo,%20me%20interesa%20información%20sobre%20sus%20servicios" class="whatsapp-float" target="_blank">
+  <a href="https://wa.me/5217352125925?text=Hola%20Buhos%20Turismo,%20me%20interesa%20información%20sobre%20sus%20servicios" class="whatsapp-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
 
   <!-- Back to Top Button -->
-  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+  <a href="#inicio" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
 
   <!-- Footer -->
   <footer>
@@ -1069,10 +1071,10 @@
       <div class="row">
         <div class="col-lg-4 mb-4">
           <div class="footer-logo">Buhos<span>Turismo</span></div>
-          <p>Viajes ejecutivos con estilo y seguridad en Morelos y alrededores. Más de 10 años de experiencia transportando clientes satisfechos.</p>
+          <p style="color:#F5F5F5">Viajes ejecutivos con estilo y seguridad en Morelos y alrededores. Más de 10 años de experiencia transportando clientes satisfechos.</p>
           <div class="mt-4">
-            <a href="tel:7354613132" class="footer-contact"><i class="fas fa-phone-alt me-2"></i> 735 461 3132</a>
-            <p><i class="fas fa-envelope me-2"></i> info@buhosturismo.com</p>
+            <a href="tel:+5217352125925" class="footer-contact"><i class="fas fa-phone-alt me-2"></i> +52 1 735 212 5925</a>
+            <p style="color:#F5F5F5"><i class="fas fa-envelope me-2"></i> info@buhosturismo.com</p>
           </div>
         </div>
         
@@ -1110,8 +1112,8 @@
         </div>
       </div>
       
-      <div class="copyright">
-        <p class="mb-0">&copy; 2025 Buhos Turismo. Todos los derechos reservados.</p>
+      <div style="color: #FFC107;" class="copyright">
+        <p style="color: #F5F5F5;" class="mb-0">&copy; 2025 Buhos Turismo. Todos los derechos reservados.</p>
       </div>
     </div>
   </footer>
@@ -1158,13 +1160,13 @@
       // Form submission handler
       $('#contactForm').submit(function(e) {
         e.preventDefault();
-        const phone = '7354613132';
+        const phone = '5217352125925';
         const name = encodeURIComponent($(this).find('input[type="text"]').val());
         const tel = encodeURIComponent($(this).find('input[type="tel"]').val());
         const service = encodeURIComponent($(this).find('select').val());
         const message = encodeURIComponent($(this).find('textarea').val());
         
-        const whatsappUrl = `https://wa.me/52${phone}?text=Hola%20Buhos%20Turismo,%20soy%20${name}%20(${tel}).%20Me%20interesa%20${service}.%20Detalles:%20${message}`;
+        const whatsappUrl = `https://wa.me/${phone}?text=Hola%20Buhos%20Turismo,%20soy%20${name}%20(${tel}).%20Me%20interesa%20${service}.%20Detalles:%20${message}`;
         
         window.open(whatsappUrl, '_blank');
       });
